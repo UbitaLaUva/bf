@@ -1,4 +1,6 @@
-
+--[[
+	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
+]]
 local placeId = game.PlaceId
 if placeId == 2753915549 or placeId == 4442272183 or placeId == 7449423635 then
     BF = true
@@ -16,11 +18,7 @@ elseif placeId == 2809202155 then
     YBA = true
     print("\n game not support")
 end
-spawn(function()
-	while wait() do 
-		print("JayKung#8973 ")
-	end
-end)
+
 if BF then
 	repeat wait() until game:IsLoaded()
 	if getgenv().Setting then else
@@ -66,39 +64,6 @@ if BF then
 		}
 	end
 	
-	if not game:IsLoaded() then game.Loaded:Wait() end
-	repeat wait() until game.Players
-	repeat wait() until game.Players.LocalPlayer
-	repeat wait() until game.ReplicatedStorage
-	repeat wait() until game.ReplicatedStorage:FindFirstChild("Remotes");
-	repeat wait() until game.Players.LocalPlayer:FindFirstChild("PlayerGui");
-	repeat wait() until game.Players.LocalPlayer.PlayerGui:FindFirstChild("Main");
-	repeat wait()
-		if game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("Main").ChooseTeam.Visible == true then
-			if getgenv().Setting["Join Team"] == "Pirate" then
-				game:GetService("Players")["LocalPlayer"].PlayerGui.Main.ChooseTeam.Container.Pirates.Frame.ViewportFrame.TextButton.Size = UDim2.new(0, 10000, 0, 10000)
-				game:GetService("Players")["LocalPlayer"].PlayerGui.Main.ChooseTeam.Container.Pirates.Frame.ViewportFrame.TextButton.Position = UDim2.new(-4, 0, -5, 0)
-				game:GetService("Players")["LocalPlayer"].PlayerGui.Main.ChooseTeam.Container.Pirates.Frame.ViewportFrame.TextButton.BackgroundTransparency = 1
-				wait(.5)
-				game:GetService'VirtualUser':Button1Down(Vector2.new(99,99))
-				game:GetService'VirtualUser':Button1Up(Vector2.new(99,99))
-			elseif getgenv().Setting["Join Team"] == "Marine" then
-				game:GetService("Players")["LocalPlayer"].PlayerGui.Main.ChooseTeam.Container.Marines.Frame.ViewportFrame.TextButton.Size = UDim2.new(0, 10000, 0, 10000)
-				game:GetService("Players")["LocalPlayer"].PlayerGui.Main.ChooseTeam.Container.Marines.Frame.ViewportFrame.TextButton.Position = UDim2.new(-4, 0, -5, 0)
-				game:GetService("Players")["LocalPlayer"].PlayerGui.Main.ChooseTeam.Container.Marines.Frame.ViewportFrame.TextButton.BackgroundTransparency = 1
-				wait(.5)
-				game:GetService'VirtualUser':Button1Down(Vector2.new(99,99))
-				game:GetService'VirtualUser':Button1Up(Vector2.new(99,99))
-			else
-				game:GetService("Players")["LocalPlayer"].PlayerGui.Main.ChooseTeam.Container.Pirates.Frame.ViewportFrame.TextButton.Size = UDim2.new(0, 10000, 0, 10000)
-				game:GetService("Players")["LocalPlayer"].PlayerGui.Main.ChooseTeam.Container.Pirates.Frame.ViewportFrame.TextButton.Position = UDim2.new(-4, 0, -5, 0)
-				game:GetService("Players")["LocalPlayer"].PlayerGui.Main.ChooseTeam.Container.Pirates.Frame.ViewportFrame.TextButton.BackgroundTransparency = 1
-				wait(.5)
-				game:GetService'VirtualUser':Button1Down(Vector2.new(99,99))
-				game:GetService'VirtualUser':Button1Up(Vector2.new(99,99))
-			end
-		end
-	until game.Players.LocalPlayer.Team ~= nil and game:IsLoaded() 
 	
 	wait(1)
 	
@@ -333,8 +298,8 @@ if BF then
 		Toggleui.BackgroundTransparency = 1.000
 		Toggleui.Position = UDim2.new(0.803076923, 0, 0, 0)
 		Toggleui.Size = UDim2.new(0, 120, 0, 30)
-		Toggleui.Font = Enum.Font.SourceSansSemibold
 		Toggleui.Text = "[ Right Control ]"
+		Toggleui.Font = Enum.Font.SourceSansSemibold
 		Toggleui.TextColor3 = Color3.fromRGB(255, 0, 0)
 		Toggleui.TextSize = 20.000
 	
@@ -2655,6 +2620,8 @@ if BF then
 	end
 	StatsBypass = "NoBypassTP"
 	
+	warn("flag")
+	
 	function HopServer()
 		local PlaceID = game.PlaceId
 		local AllIDs = {}
@@ -4261,7 +4228,7 @@ if BF then
 		NoClip = false
 	end
 	
-	local CameraShakeInstanceSet = require(game.Players.LocalPlayer.PlayerScripts.CombatFramework.CameraShaker.CameraShakeInstance)
+	local CameraShakeInstanceSet = require(game:GetService("ReplicatedStorage").Util.CameraShaker.Main.CameraShakeInstance)
 	function AutoFarm(NameMonster,RemoteQuestGet,LevelQuestGet,TextQuestName,WaitMonSpawnCFrame,NPCQuestCFrame,FarmMode)
 		local AutoFarmfunc = {}
 	
@@ -4934,7 +4901,7 @@ if BF then
 		end)
 	end)
 	
-	local Main = library:Window("Ubita","Blox Fruits AutoFarm")
+	local Main = library:Window("Ubita 2.0","Blox Fruit")
 	local AutoFarmTab = Main:Tab("Auto Farm")
 	local MainAutoFarmFunction = AutoFarm(Ms,NameQuest,LevelQuest,NameMon,CFrameMon,CFrameQuest,"AutoFarmLevel")
 	spawn(function()
@@ -7861,6 +7828,477 @@ if BF then
 	end)
 	AutoFarmMiscTab:Line()
 	AutoFarmMiscTab:Label("Sea 3 (Thire World)",true)
+	-- Auto Buddy Swords
+	AutoFarmMiscTab:Label("🍭 Buddy Swords 🍭")
+	AutoFarmMiscTab:Toggle("Auto Buddy Swords",_G.AutoBuddySwords,function(v)
+		if not ThreeWorld then
+			library:Notification("Notification","Use In Thire World","Okey")    
+		else
+			AutoBuddySwords = v
+		end 
+	end)
+	AutoFarmMiscTab:Toggle("Auto Buddy Swords HOP",_G.AutoBuddySwordsHop,function(v)
+		if not ThreeWorld then
+			library:Notification("Notification","Use In Thire World","Okey")    
+		else
+			AutoBuddySwords = v
+			AutoBuddySwordsHOP = v
+		end 
+	end)
+	spawn(function()
+		while wait() do
+			if AutoBuddySwords then
+				if game.ReplicatedStorage:FindFirstChild("Cake Queen [Lv. 2175] [Boss]") or game.Workspace.Enemies:FindFirstChild("Cake Queen [Lv. 2175] [Boss]") then
+					if game.Workspace.Enemies:FindFirstChild("Cake Queen [Lv. 2175] [Boss]") then
+						for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
+							if AutoBuddySwords and v.Name == "Cake Queen [Lv. 2175] [Boss]" and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+								repeat wait()
+									Farmtween = toTarget(v.HumanoidRootPart.Position,v.HumanoidRootPart.CFrame)
+									if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 300 then
+										if Farmtween then
+											Farmtween:Stop()
+										end
+										EquipWeapon(SelectToolWeapon)
+										Usefastattack = true
+										if not game.Players.LocalPlayer.Character:FindFirstChild("HasBuso") then
+											local args = {
+												[1] = "Buso"
+											}
+											game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+										end
+										game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0, 30, 0)
+										game:GetService'VirtualUser':CaptureController()
+										game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))
+									end 
+								until not AutoBuddySwords or v.Humanoid.Health <= 0 or not v.Parent
+								Usefastattack = false
+							end
+						end
+					else
+						BuddySwordsTween = toTarget(CFrame.new(-821, 66, -10965).Position,CFrame.new(-821, 66, -10965))
+						if (CFrame.new(-821, 66, -10965).Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 250 then
+							if BuddySwordsTween then
+								BuddySwordsTween:Stop()
+							end
+							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-821, 66, -10965)
+						end
+					end
+				elseif AutoBuddySwordsHOP then
+					local PlaceID = game.PlaceId
+					local AllIDs = {}
+					local foundAnything = ""
+					local actualHour = os.date("!*t").hour
+					local Deleted = false
+					function TPReturner()
+						local Site;
+						if foundAnything == "" then
+							Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100'))
+						else
+							Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100&cursor=' .. foundAnything))
+						end
+						local ID = ""
+						if Site.nextPageCursor and Site.nextPageCursor ~= "null" and Site.nextPageCursor ~= nil then
+							foundAnything = Site.nextPageCursor
+						end
+						local num = 0;
+						for i,v in pairs(Site.data) do
+							local Possible = true
+							ID = tostring(v.id)
+							if tonumber(v.maxPlayers) > tonumber(v.playing) then
+								for _,Existing in pairs(AllIDs) do
+									if num ~= 0 then
+										if ID == tostring(Existing) then
+											Possible = false
+										end
+									else
+										if tonumber(actualHour) ~= tonumber(Existing) then
+											local delFile = pcall(function()
+												-- delfile("NotSameServers.json")
+												AllIDs = {}
+												table.insert(AllIDs, actualHour)
+											end)
+										end
+									end
+									num = num + 1
+								end
+								if Possible == true then
+									table.insert(AllIDs, ID)
+									wait()
+									pcall(function()
+										-- writefile("NotSameServers.json", game:GetService('HttpService'):JSONEncode(AllIDs))
+										wait()
+										game:GetService("TeleportService"):TeleportToPlaceInstance(PlaceID, ID, game.Players.LocalPlayer)
+									end)
+									wait(1)
+								end
+							end
+						end
+					end
+					function Teleport() 
+						while wait() do
+							pcall(function()
+								TPReturner()
+								if foundAnything ~= "" then
+									TPReturner()
+								end
+							end)
+						end
+					end
+					Teleport()
+				end
+			end
+		end
+	end)
+	AutoFarmMiscTab:Label("☠ Hallow Ween ☠")
+	AutoFarmMiscTab:Toggle("Auto Farm Bone",_G.AutoFarmBone,function(vu)
+		if not ThreeWorld and vu then
+			Flux:Notification('Use In Sea 3 (Three World)')
+		else 
+			AutoFarmBone = vu
+			MainAutoFarmBone = vu
+		end  
+	end)    
+	spawn(function()
+		while wait() do
+			if AutoFarmBone then
+				if game:GetService("Workspace").Enemies:FindFirstChild("Reborn Skeleton [Lv. 1975]") or game:GetService("Workspace").Enemies:FindFirstChild("Living Zombie [Lv. 2000]") or game:GetService("Workspace").Enemies:FindFirstChild("Demonic Soul [Lv. 2025]") or game:GetService("Workspace").Enemies:FindFirstChild("Posessed Mummy [Lv. 2050]") then
+					for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
+						if AutoFarmBone and (v.Name == "Reborn Skeleton [Lv. 1975]" or v.Name == "Living Zombie [Lv. 2000]" or v.Name == "Demonic Soul [Lv. 2025]" or v.Name == "Posessed Mummy [Lv. 2050]") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+							repeat wait()
+								if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > 300 then
+									Farmtween = toTarget(v.HumanoidRootPart.Position,v.HumanoidRootPart.CFrame)
+									MagnetFarmBone = false
+									Usefastattack = false
+								elseif (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 300 then
+									if Farmtween then
+										Farmtween:Stop()
+									end
+									Usefastattack = true
+									PosFarmBone = v.HumanoidRootPart.CFrame
+									EquipWeapon(SelectToolWeapon)
+									if not game.Players.LocalPlayer.Character:FindFirstChild("HasBuso") then
+										local args = {
+											[1] = "Buso"
+										}
+										game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+									end
+									game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0, 30, 0)
+									Click()
+									MagnetFarmBone = true
+								end
+							until not AutoFarmBone or not v.Parent or v.Humanoid.Health <= 0
+							Usefastattack = false
+							MagnetFarmBone = false
+						end
+					end
+				else
+					MagnetFarmBone = false
+					Usefastattack = false
+					Questtween = toTarget(CFrame.new(-9506.14648, 172.130661, 6101.79053).Position,CFrame.new(-9506.14648, 172.130661, 6101.79053))
+					if (CFrame.new(-9506.14648, 172.130661, 6101.79053).Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 300 then
+						if Questtween then
+							Questtween:Stop()
+						end
+						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-9506.14648, 172.130661, 6101.79053, -0.999731541, 0, -0.0231563263, 0, 1, 0, 0.0231563263, 0, -0.999731541)
+					end
+				end
+			end
+		end
+	end)
+	spawn(function()
+		while wait() do
+			if MagnetFarmBone and AutoFarmBone then
+				for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
+					if MagnetFarmBone  and AutoFarmBone and (v.Name == "Reborn Skeleton [Lv. 1975]" or v.Name == "Living Zombie [Lv. 2000]" or v.Name == "Demonic Soul [Lv. 2025]" or v.Name == "Posessed Mummy [Lv. 2050]") and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 and (v.HumanoidRootPart.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 350 then
+						v.HumanoidRootPart.CFrame = PosFarmBone
+						v.HumanoidRootPart.CanCollide = false
+					end
+				end
+			end
+		end
+	end)
+	
+	local string_1 = "getInventoryWeapons";
+	local Target = game:GetService("ReplicatedStorage").Remotes["CommF_"];
+	local ListInventoryWeapons = Target:InvokeServer(string_1);
+	AutoFarmMiscTab:Toggle("Auto Hallow Scythe",_G.AutoHallowScythe,function(a)
+		HaveHallowScythe = false
+		for i,v in pairs(ListInventoryWeapons) do
+			if v.Name == "Hallow Scythe" then   
+				HaveHallowScythe = true
+			end
+		end
+		if not ThreeWorld and a then
+			Flux:Notification('Use In Sea 3 (Three World)')
+		elseif HaveHallowScythe and a then
+			Flux:Notification('You Have Hallow Scythe')
+		else    
+			AutoHallowScythe = a
+		end 
+	end)
+	spawn(function()
+		while wait() do
+			if AutoHallowScythe then
+				if game.Players.LocalPlayer.Backpack:FindFirstChild("Hallow Essence") then
+					if MainAutoFarmBone then
+						AutoFarmBone = false
+					end
+					Questtween = toTarget(game:GetService("Workspace").Map["Haunted Castle"].Summoner.Detection.Position,game:GetService("Workspace").Map["Haunted Castle"].Summoner.Detection.CFrame)
+					if (game:GetService("Workspace").Map["Haunted Castle"].Summoner.Detection.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 300 then
+						if Questtween then
+							Questtween:Stop()
+						end
+						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Map["Haunted Castle"].Summoner.Detection.CFrame
+					end
+				elseif game:GetService("Workspace").Enemies:FindFirstChild("Soul Reaper [Lv. 2100] [Raid Boss]") or game.ReplicatedStorage:FindFirstChild("Soul Reaper [Lv. 2100] [Raid Boss]") then
+					if MainAutoFarmBone then
+						AutoFarmBone = false
+					end
+					if game:GetService("Workspace").Enemies:FindFirstChild("Soul Reaper [Lv. 2100] [Raid Boss]") then
+						for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
+							if AutoHallowScythe and v.Name == "Soul Reaper [Lv. 2100] [Raid Boss]" and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+								repeat wait()
+									if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > 300 then
+										Farmtween = toTarget(v.HumanoidRootPart.Position,v.HumanoidRootPart.CFrame)
+									elseif (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 300 then
+										if Farmtween then
+											Farmtween:Stop()
+										end
+										PosFarmBone = v.HumanoidRootPart.CFrame
+										EquipWeapon(SelectToolWeapon)
+										
+										if not game.Players.LocalPlayer.Character:FindFirstChild("HasBuso") then
+											local args = {
+												[1] = "Buso"
+											}
+											game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+										end
+										game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0, 30, 0)
+										Click()
+									end
+								until not AutoHallowScythe or not v.Parent or v.Humanoid.Health <= 0
+								
+							end
+						end
+					else
+						Questtween = toTarget(CFrame.new(-9521, 316, 6684).Position,CFrame.new(-9521, 316, 6684))
+						if (CFrame.new(-9521, 316, 6684).Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 300 then
+							if Questtween then
+								Questtween:Stop()
+							end
+							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-9521, 316, 6684)
+						end
+					end 
+				else
+					if MainAutoFarmBone then
+						AutoFarmBone = true
+					end
+					local string_1 = "Bones";
+					local string_2 = "Buy";
+					local number_1 = 1;
+					local number_2 = 1;
+					local Target = game:GetService("ReplicatedStorage").Remotes["CommF_"];
+					Target:InvokeServer(string_1, string_2, number_1, number_2);
+				end
+			end
+		end
+	end)
+	AutoFarmMiscTab:Toggle("Auto Farm Soul Reaper",_G.AutoFarmSoulReaper,function(a)
+		if not ThreeWorld and a then
+			Flux:Notification('Use In Sea 3 (Three World)')
+		else    
+			AutoSoulReaper = a
+		end 
+	end)
+	spawn(function()
+		while wait() do
+			if AutoSoulReaper then
+				if game.Players.LocalPlayer.Backpack:FindFirstChild("Hallow Essence") then
+					if MainAutoFarmBone then
+						AutoFarmBone = false
+					end
+					Questtween = toTarget(game:GetService("Workspace").Map["Haunted Castle"].Summoner.Detection.Position,game:GetService("Workspace").Map["Haunted Castle"].Summoner.Detection.CFrame)
+					if (game:GetService("Workspace").Map["Haunted Castle"].Summoner.Detection.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 300 then
+						if Questtween then
+							Questtween:Stop()
+						end
+						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Map["Haunted Castle"].Summoner.Detection.CFrame
+					end
+				elseif game:GetService("Workspace").Enemies:FindFirstChild("Soul Reaper [Lv. 2100] [Raid Boss]") or game.ReplicatedStorage:FindFirstChild("Soul Reaper [Lv. 2100] [Raid Boss]") then
+					if MainAutoFarmBone then
+						AutoFarmBone = false
+					end
+					if game:GetService("Workspace").Enemies:FindFirstChild("Soul Reaper [Lv. 2100] [Raid Boss]") then
+						for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
+							if AutoHallowScythe and v.Name == "Soul Reaper [Lv. 2100] [Raid Boss]" and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+								repeat wait()
+									if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > 300 then
+										Farmtween = toTarget(v.HumanoidRootPart.Position,v.HumanoidRootPart.CFrame)
+									elseif (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 300 then
+										if Farmtween then
+											Farmtween:Stop()
+										end
+										PosFarmBone = v.HumanoidRootPart.CFrame
+										EquipWeapon(SelectToolWeapon)
+										
+										if not game.Players.LocalPlayer.Character:FindFirstChild("HasBuso") then
+											local args = {
+												[1] = "Buso"
+											}
+											game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+										end
+										game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0, 30, 0)
+										Click()
+									end
+								until not AutoSoulReaper or not v.Parent or v.Humanoid.Health <= 0
+								
+							end
+						end
+					else
+						Questtween = toTarget(CFrame.new(-9521, 316, 6684).Position,CFrame.new(-9521, 316, 6684))
+						if (CFrame.new(-9521, 316, 6684).Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 300 then
+							if Questtween then
+								Questtween:Stop()
+							end
+							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-9521, 316, 6684)
+						end
+					end 
+				else
+					if MainAutoFarmBone then
+						AutoFarmBone = true
+					end
+					local string_1 = "Bones";
+					local string_2 = "Buy";
+					local number_1 = 1;
+					local number_2 = 1;
+					local Target = game:GetService("ReplicatedStorage").Remotes["CommF_"];
+					Target:InvokeServer(string_1, string_2, number_1, number_2);
+				end
+			end
+		end
+	end)
+	AutoFarmMiscTab:Toggle("Auto Random bone",_G.AutoRandombone,function(value)
+		brandom = value
+	end)
+	spawn(function()
+		while wait() do
+			if brandom then
+				game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Bones","Buy",1,1)
+			end
+		end
+	end)  
+	AutoFarmMiscTab:Label("Portal")
+	PortalKill = AutoFarmMiscTab:Label("N/S")
+	spawn(function()
+		while wait() do
+			if game.ReplicatedStorage:FindFirstChild("Cake Prince [Lv. 2300] [Raid Boss]") or game:GetService("Workspace").Enemies:FindFirstChild("Cake Prince [Lv. 2300] [Raid Boss]") then
+				PortalKill:Refresh("Can Open Door To Kill Cake Prince")
+			else
+				PortalKill:Refresh("Need Kill Mods : " .. string.match(game.ReplicatedStorage.Remotes.CommF_:InvokeServer("CakePrinceSpawner", true), "%d+") .. " To Open Kill Cake Prince")
+			end
+		end
+	end)
+	AutoFarmMiscTab:Toggle("Auto Farm Cake Prince",_G.AutoFarmCakePrince,function(vu)
+		if not ThreeWorld and vu then
+			VLib:Notification('Use In Sea 3 (Three World)')
+		else 
+			AutoFarmCakePrince = vu
+		end  
+	end)    
+	spawn(function()
+		while wait() do
+			if AutoFarmCakePrince then
+				game.ReplicatedStorage.Remotes.CommF_:InvokeServer("CakePrinceSpawner")
+				if game.ReplicatedStorage:FindFirstChild("Cake Prince [Lv. 2300] [Raid Boss]") or game:GetService("Workspace").Enemies:FindFirstChild("Cake Prince [Lv. 2300] [Raid Boss]") then
+					if game:GetService("Workspace").Enemies:FindFirstChild("Cake Prince [Lv. 2300] [Raid Boss]") then
+						for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
+							if AutoFarmCakePrince and v.Name == "Cake Prince [Lv. 2300] [Raid Boss]" and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+								repeat wait()
+									if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > 300 then
+										Farmtween = toTarget(v.HumanoidRootPart.Position,v.HumanoidRootPart.CFrame)
+										Usefastattack = false
+									elseif (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 300 then
+										if Farmtween then
+											Farmtween:Stop()
+										end
+										PosFarmBone = v.HumanoidRootPart.CFrame
+										EquipWeapon(SelectToolWeapon)
+										Usefastattack = true
+										if not game.Players.LocalPlayer.Character:FindFirstChild("HasBuso") then
+											local args = {
+												[1] = "Buso"
+											}
+											game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+										end
+										game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0, 30, 0)
+										Click()
+									end
+								until not AutoFarmCakePrince or not v.Parent or v.Humanoid.Health <= 0 or game.ReplicatedStorage:FindFirstChild("Cake Prince [Lv. 2300] [Raid Boss]")
+								Usefastattack = false
+							end
+						end
+					else
+						Usefastattack = false
+						Questtween = toTarget(CFrame.new(-2151.82153, 149.315704, -12404.9053).Position,CFrame.new(-2151.82153, 149.315704, -12404.9053))
+						if (CFrame.new(-2151.82153, 149.315704, -12404.9053).Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 300 then
+							if Questtween then Questtween:Stop() end
+							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2151.82153, 149.315704, -12404.9053)
+						end
+					end
+				else
+					if game:GetService("Workspace").Enemies:FindFirstChild("Cookie Crafter [Lv. 2200]") or game:GetService("Workspace").Enemies:FindFirstChild("Cake Guard [Lv. 2225]") or game:GetService("Workspace").Enemies:FindFirstChild("Baking Staff [Lv. 2250]") or game:GetService("Workspace").Enemies:FindFirstChild("Head Baker [Lv. 2275]") then
+						for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
+							if 0 and (v.Name == "Cookie Crafter [Lv. 2200]" or v.Name == "Cake Guard [Lv. 2225]" or v.Name == "Baking Staff [Lv. 2250]" or v.Name == "Head Baker [Lv. 2275]") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+								repeat wait()
+									if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude > 300 then
+										Farmtween = toTarget(v.HumanoidRootPart.Position,v.HumanoidRootPart.CFrame)
+										MagnetFarmCakePrince = false
+										Usefastattack = false
+									elseif (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 300 then
+										if Farmtween then Farmtween:Stop() end
+										Usefastattack = true
+										PosFarmCakePrince = v.HumanoidRootPart.CFrame
+										EquipWeapon(SelectToolWeapon)
+										if not game.Players.LocalPlayer.Character:FindFirstChild("HasBuso") then
+											local args = {
+												[1] = "Buso"
+											}
+											game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+										end
+										game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0, 30, 0)
+										Click()
+										MagnetFarmCakePrince = true
+									end
+								until not AutoFarmCakePrince or not v.Parent or v.Humanoid.Health <= 0
+								Usefastattack = false
+								MagnetFarmBone = false
+							end
+						end
+					else
+						MagnetFarmCakePrince = false
+						Usefastattack = false
+						Questtween = toTarget(CFrame.new(-2077, 252, -12373).Position,CFrame.new(-2077, 252, -12373))
+						if (CFrame.new(-2077, 252, -12373).Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 300 then
+							if Questtween then Questtween:Stop() end
+							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2077, 252, -12373)
+						end
+					end
+				end
+			end
+		end
+	end)
+	spawn(function()
+		while wait() do
+			if MagnetFarmCakePrince and AutoFarmCakePrince then
+				for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
+					if MagnetFarmCakePrince  and AutoFarmCakePrince and (v.Name == "Cookie Crafter [Lv. 2200]" or v.Name == "Cake Guard [Lv. 2225]" or v.Name == "Baking Staff [Lv. 2250]" or v.Name == "Head Baker [Lv. 2275]") and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 and (v.HumanoidRootPart.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 350 then
+						v.HumanoidRootPart.CFrame = PosFarmCakePrince
+						v.HumanoidRootPart.CanCollide = false
+					end
+				end
+			end
+		end
+	end)
 	
 	AutoFarmMiscTab:Label("Auto Tushita",true)
 	AutoFarmMiscTab:Toggle("Auto Tushita",_G.AutoEnma,function(v)
@@ -11392,6 +11830,22 @@ if BF then
 		end
 		Teleport()
 	end)
+	-- Server_Hop_LessPeople:Lock()
+	SettingTab:Line()
+	SettingTab:Button("Join discord",function()
+		local request = request or http_request or (syn and syn.request)
+		if not request then return end
+		local start = 6463
+		local invCode = 'QgQdx7uCUT'
+		for i = start-10, start+1 do
+			spawn(function()
+				pcall(function()
+					request({Url = "http://127.0.0.1:"..tostring(i).."/rpc?v=1",Method = "POST",Headers = {["Content-Type"] = "application/json",["Origin"] = "https://link-target.net/599467/link-de-discord"},Body = game:GetService("HttpService"):JSONEncode({["cmd"] = "INVITE_BROWSER",["nonce"] = game:GetService("HttpService"):GenerateGUID(false),["args"] = {["invite"] = {["code"] = invCode,},["code"] = invCode}})})
+				end)
+			end)
+		end
+	end)
+	SettingTab:DestroyGui()
 	
 	local SecretTab = Main:Tab("Secret PVP",true)
 	
@@ -13744,7 +14198,7 @@ if OPL then
         end
         return Tabs
     end
-    local win = Flux:Window("Ubita Hub", "One Piece legendary", Color3.fromRGB(255, 70, 70 ), Enum.KeyCode.RightControl)
+    local win = Flux:Window("Ren Hub", "One Piece legendary", Color3.fromRGB(255, 70, 70 ), Enum.KeyCode.RightControl)
     local page1 = win:Tab("Wapon Modify", "http://www.roblox.com/asset/?id=6023426915")
     local page2 = win:Tab("Farming", "http://www.roblox.com/asset/?id=6023426915")
     local page3 = win:Tab("TelePort", "http://www.roblox.com/asset/?id=6023426915")
@@ -16802,7 +17256,7 @@ if BOKU then
         end
         return Tabs
     end
-    local win = Flux:Window("Ubita Hub", "Boku No Roblox", Color3.fromRGB(255, 70, 70 ), Enum.KeyCode.RightControl)
+    local win = Flux:Window("Ren Hub", "Boku No Roblox", Color3.fromRGB(255, 70, 70 ), Enum.KeyCode.RightControl)
     local Setting = win:Tab("Setting Tab","http://www.roblox.com/asset/?id=6022668888")
     local Main = win:Tab("Main Tab","http://www.roblox.com/asset/?id=6022668888")
     local Stats = win:Tab("Stats Tab","http://www.roblox.com/asset/?id=6022668888")
@@ -17164,7 +17618,10 @@ if BOKU then
         end
         Teleport()
     end)
-
+    Settin:Label("Thx For Buy Roy'x Hub")
+    Settin:Button("Copy Discord",function()
+        setclipboard("https://discord.gg/5X7wYYFPRb")
+    end)
     ---------------- Function ---------------
     local function toTarget(pos, targetPos, targetCFrame)
         local tween_s = game:service"TweenService"
@@ -19710,7 +20167,7 @@ if RO then
         end
         return Tabs
     end
-    local win = Flux:Window("Ubita Hub", "Ro Ghoul", Color3.fromRGB(255, 70, 70 ), Enum.KeyCode.RightControl)
+    local win = Flux:Window("Ren Hub", "Ro Ghoul", Color3.fromRGB(255, 70, 70 ), Enum.KeyCode.RightControl)
     local page = win:Tab("Status Tab", "http://www.roblox.com/asset/?id=6023426915")
     local page1 = win:Tab("Main Tab", "http://www.roblox.com/asset/?id=6023426915")
     local page2 = win:Tab("Stats Tab", "http://www.roblox.com/asset/?id=6023426915")
@@ -21127,7 +21584,7 @@ TextBoxValue.FocusLost:Connect(
     end
     return tabs
 end
-local win = Lava:Window("Ubita HUB")
+local win = Lava:Window("REN HUB")
 local AutoFarm = win:Tab("AutoFarm")
 local Egga = win:Tab("Egg")
 local Misc = win:Tab("Misc")
@@ -21193,6 +21650,37 @@ local Set = win:Tab("Setting")
             vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
          end)
       end)
+                function webhook(Webhook,text)
+                    local re
+                    if syn then
+                        re = syn.request 
+                    else
+                        re = request
+                    end
+                    
+                        re({
+                        Url = Webhook,
+                        Method = "POST",
+                        Headers = {
+                            ["Content-Type"] = "application/json"
+                        },
+                        Body = game:GetService("HttpService"):JSONEncode({
+                        ["content"] = "",
+                            ["embeds"] = {
+                                {
+                                ["type"] = "rich",
+                                ["author"] = {
+                                    ["name"] = "Lava Notify",
+                                    ["icon_url"] = "https://cdn.discordapp.com/avatars/930755060961538068/713a4b41e853831dceeeb946f5b7814f.webp?size=100"
+                                },
+                                ["color"] = tonumber(0x7269da),
+                                ["description"] = "\n".. text .."\n **Name** : ||**".. game.Players.LocalPlayer.Name .. "**||\n **RaidMap** : ".. game.Workspace.Worlds.Raid.RaidData.CurrentWorld.Value .. "\n **Yen** : ".. game.Players.LocalPlayer.leaderstats.Yen.Value ..""
+                            }
+                    }   
+                        })
+                    
+                    })
+                    end
 
           local WorlD = game.Players.LocalPlayer.World.Value
                 local mob = nil
@@ -24158,7 +24646,7 @@ for i,v in pairs(devilfruit) do
 end
 local real = game.Players.LocalPlayer.UserId
 
-local Main = Flux:Window("Ubita Hub", "King Legacy", Color3.fromRGB(255, 70, 70 ), Enum.KeyCode.RightControl)
+local Main = Flux:Window("Ren Hub", "King Legacy", Color3.fromRGB(255, 70, 70 ), Enum.KeyCode.RightControl)
 local AutoFarmTab = Main:Tab("Main", "http://www.roblox.com/asset/?id=6023426915")
 local Main2 = Main:Tab("Main 2", "http://www.roblox.com/asset/?id=6023426915")
 local StatTab = Main:Tab("Stat", "http://www.roblox.com/asset/?id=6023426915")
@@ -25922,7 +26410,7 @@ if checkgame[game.PlaceId].Title == "Your Bizarre Adventure" then
         wait(5)
     end
     
-    local Main = library:Window("Ubita HUB",LocalPlayer.Name,checkgame[game.PlaceId].Title)
+    local Main = library:Window("REN HUB",LocalPlayer.Name,checkgame[game.PlaceId].Title)
     library:TitleTab("MAIN")
     local Pg1 = Main:Tab("Game","rbxassetid://3926307971",124, 204)
     local Pg2 = Main:Tab("Character","rbxassetid://3926305904",964, 244)
@@ -25956,6 +26444,9 @@ if checkgame[game.PlaceId].Title == "Your Bizarre Adventure" then
     )
 
     --scoll frame
+    Pg1:Button("Copy Discord inv",function()
+        setclipboard("https://discord.gg/mPUD2Gr9A4")
+    end)
     Pg1:Button("Serverhop",function()
         pcall(function()
             TPReturner()
@@ -26819,5 +27310,5 @@ game:GetService("Players").LocalPlayer.Character.RemoteEvent:FireServer("Attack"
             end
         end
     end)
-	end
+end
 end
